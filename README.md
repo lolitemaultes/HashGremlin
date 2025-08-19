@@ -1,7 +1,7 @@
 
 <img width="4052" height="904" alt="hashgremlin" src="https://github.com/user-attachments/assets/554b1e96-7ebd-44b9-a9e0-b30ff4a68fbd" />
 
-# 🧌 HashGremlin
+# HashGremlin
 
 **Have you ever wanted a pet gremlin with a cryptocurrency trading addiction?**
 
