@@ -32,8 +32,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 from torch.utils.tensorboard import SummaryWriter
-from torch.distributions import Categorical
-import torch.distributions as dist
+from torch.distributions import Categorical, kl_divergence
 
 # Add safe globals for NumPy scalars (PyTorch 2.6+ compatibility)
 try:
@@ -989,10 +988,10 @@ class PPOAgent:
                 
                 # Track metrics
                 with torch.no_grad():
-                    # Compute true KL divergence between old and new distributions
+                    # Compute true KL divergence between old and new distributions  
                     old_dist = Categorical(logits=batch_old_action_logits)
                     new_dist = Categorical(logits=action_logits)
-                    kl = dist.kl_divergence(old_dist, new_dist).mean()
+                    kl = kl_divergence(old_dist, new_dist).mean()
                     kl_divergence_epoch.append(kl.item())
                 
                 total_loss = policy_loss + config.value_loss_coef * value_loss - entropy_coef * entropy
